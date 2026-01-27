@@ -1,0 +1,33 @@
+{
+  "name": "spki-pinning-lab",
+  "version": "1.0.0",
+  "description": "Laboratorio educativo de SPKI Pinning - Demuestra la diferencia entre validación TLS y SPKI pinning",
+  "main": "src/server.js",
+  "scripts": {
+    "setup": "bash scripts/generate-certs.sh",
+    "server:a": "node src/server.js --cert a",
+    "server:b": "node src/server.js --cert b",
+    "server:c": "node src/server.js --cert c",
+    "server:a:3001": "node src/server.js --cert a --port 3001",
+    "client:a": "node src/client.js --pins a --cert-file certs/ca-cert.pem",
+    "client:ab": "node src/client.js --pins a,b --cert-file certs/ca-cert.pem",
+    "client:b": "node src/client.js --pins b --cert-file certs/ca-cert.pem",
+    "client:c": "node src/client.js --pins c --cert-file certs/ca-cert.pem",
+    "test:scenario1": "echo 'Escenario 1: Servidor A + Cliente con Pin A' && npm run server:a &",
+    "calculate-pins": "node scripts/calculate-pin.js certs/cert-a.pem certs/cert-b.pem certs/cert-c.pem"
+  },
+  "keywords": [
+    "security",
+    "tls",
+    "pinning",
+    "spki",
+    "https",
+    "certificate",
+    "education"
+  ],
+  "author": "SPKI Pinning Lab",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

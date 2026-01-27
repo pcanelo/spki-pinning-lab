@@ -1,0 +1,72 @@
+spki-pinning-lab/
+├── README.md                          # Documentación principal con guía paso a paso
+├── package.json                       # Dependencias y scripts npm
+├── ESTRUCTURA.txt                     # Este archivo
+│
+├── certs/                             # Certificados y claves (generados)
+│   ├── ca-key.pem                     # Clave privada de CA local
+│   ├── ca-cert.pem                    # Certificado de CA local (root)
+│   │
+│   ├── key-a.pem                      # Clave privada del Certificado A
+│   ├── cert-a.pem                     # Certificado A (firmado por CA)
+│   ├── cert-a.csr                     # CSR de Certificado A
+│   │
+│   ├── key-b.pem                      # Clave privada del Certificado B
+│   ├── cert-b.pem                     # Certificado B (firmado por CA)
+│   ├── cert-b.csr                     # CSR de Certificado B
+│   │
+│   ├── key-c.pem                      # Clave privada del Certificado C (MITM demo)
+│   ├── cert-c.pem                     # Certificado C (firmado por CA)
+│   ├── cert-c.csr                     # CSR de Certificado C
+│   │
+│   └── pins.json                      # SPKIs calculados en base64
+│
+├── src/                               # Código fuente
+│   ├── server.js                      # Servidor HTTPS con rotación de certs
+│   │   ├─ Uso: node server.js --cert a
+│   │   ├─ Uso: node server.js --cert b --port 3001
+│   │   └─ Endpoints: /health, /ping, /cert-info, /api/test
+│   │
+│   └── client.js                      # Cliente con validación SPKI pinning
+│       ├─ Uso: node client.js --pins a
+│       ├─ Uso: node client.js --pins a,b
+│       └─ Uso: node client.js --pins a --cert-file certs/ca-cert.pem
+│
+├── scripts/                           # Scripts helper
+│   ├── generate-certs.sh              # Genera CA y todos los certificados
+│   │   └─ Uso: bash scripts/generate-certs.sh
+│   │
+│   └── calculate-pin.js               # Calcula SPKI pins desde certificados
+│       └─ Uso: node scripts/calculate-pin.js certs/cert-a.pem
+│
+└── docs/                              # Documentación detallada
+    ├── CONCEPTOS.md                   # Explicación teórica de SPKI pinning
+    │   ├─ Qué es SPKI
+    │   ├─ Diferencia TLS vs SPKI
+    │   ├─ Cálculo de pins
+    │   ├─ Rotación de certificados
+    │   └─ Casos de uso reales
+    │
+    ├── OPENSSL-COMMANDS.md            # Referencia de comandos OpenSSL
+    │   ├─ Generar CA local
+    │   ├─ Generar certificados
+    │   ├─ Calcular SPKI pins
+    │   ├─ Inspeccionar certificados
+    │   └─ Troubleshooting
+    │
+    └── ESCENARIOS.md                  # Descripción técnica de escenarios
+        ├─ Escenario 1: Éxito básico
+        ├─ Escenario 2: Rotación de certs
+        ├─ Escenario 3: Pin faltante
+        ├─ Escenario 4: MITM conceptual
+        └─ Análisis comparativo
+
+RESUMEN DE ARCHIVOS:
+- 5 archivos de documentación (README + 3 docs + ESTRUCTURA)
+- 2 scripts ejecutables (bash + node)
+- 2 aplicaciones Node.js (servidor + cliente)
+- 13 archivos de certificados/claves (CA + 3 pares de certs)
+- 1 archivo de configuración (pins.json)
+- 1 archivo package.json
+
+TOTAL: 24 archivos en 6 directorios
