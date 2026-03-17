@@ -553,15 +553,17 @@ SPKI pinning se usa en:
 
 ## Licencia
 
-MIT - Libre para uso educativo 
-Created by: Patricio Canelo E.
-pcanelo@gmail.com
+MIT - Libre para uso educativo y comercial
+
 ---
 
 ## Autor
 
 SPKI Pinning Lab - Laboratorio educativo de seguridad TLS
+Created by: pkanelo.
+pcanelo@gmail.com
 
+ 
 ---
 
 ## Próximos Pasos
