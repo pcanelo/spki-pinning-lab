@@ -553,8 +553,9 @@ SPKI pinning se usa en:
 
 ## Licencia
 
-MIT - Libre para uso educativo y comercial
-
+MIT - Libre para uso educativo 
+Created by: Patricio Canelo E.
+pcanelo@gmail.com
 ---
 
 ## Autor
